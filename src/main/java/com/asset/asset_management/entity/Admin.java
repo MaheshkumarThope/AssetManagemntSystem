@@ -1,13 +1,23 @@
 package com.asset.asset_management.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="admin")
 public class Admin {
+	
+	@OneToMany(mappedBy = "allocatedBy")
+	private List<Allocation> allocationsMade = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "processedBy")
+	private List<Request> processedRequests = new ArrayList<>();
 	
 	@Id
 	@GeneratedValue

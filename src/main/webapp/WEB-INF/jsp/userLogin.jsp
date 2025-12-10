@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>User Login</title>
     <style>
         :root{
           --bg:#020617;
@@ -234,20 +234,20 @@
           opacity:.9;
         }
 
-        /* NEW: user login switch */
-        .switch-user-wrap{
+        /* switch to admin */
+        .switch-admin-wrap{
           margin-top:14px;
           text-align:center;
           font-size:11px;
           color:var(--sub);
         }
 
-        .switch-user-wrap span{
+        .switch-admin-wrap span{
           display:block;
           margin-bottom:6px;
         }
 
-        .btn-user{
+        .btn-admin{
           display:inline-block;
           padding:8px 16px;
           border-radius:999px;
@@ -261,7 +261,7 @@
           box-shadow:0 10px 26px rgba(15,23,42,0.8);
         }
 
-        .btn-user:hover{
+        .btn-admin:hover{
           background:#0f172a;
           border-color:rgba(56,189,248,0.9);
           transform:translateY(-1px);
@@ -274,17 +274,17 @@
         <!-- Logo / brand -->
         <div class="logo-wrap">
             <div class="logo-mark">
-                <!-- simple logo icon -->
-                <span>🛡️</span>
+                <!-- user logo icon -->
+                <span>👤</span>
             </div>
             <div class="logo-text">
-                <p class="logo-title">Asset Admin Portal</p>
-                <p class="logo-sub">Secure access for administrators only</p>
+                <p class="logo-title">Asset User Portal</p>
+                <p class="logo-sub">Access your assigned assets and requests</p>
             </div>
         </div>
 
-        <h2>Admin Login</h2>
-        <div class="hint">Use your assigned admin credentials to sign in.</div>
+        <h2>User Login</h2>
+        <div class="hint">Use your registered user credentials to sign in.</div>
 
         <!-- Error message from backend -->
         <%
@@ -296,8 +296,7 @@
             }
         %>
 
-        <!-- Admin login form -->
-        <form action="adminLogin" method="post">
+        <form action="userLogin" method="post">
             <label for="email">Username</label>
             <input type="text" id="email" name="email" placeholder="Enter email" required>
 
@@ -307,14 +306,14 @@
             <button type="submit">Login</button>
         </form>
 
-        <!-- NEW: link to user login -->
-        <div class="switch-user-wrap">
-            <span>Not an admin?</span>
-            <a href="userLogin" class="btn-user">Login as User</a>
+        <!-- NEW: link to admin login -->
+        <div class="switch-admin-wrap">
+            <span>Are you an admin?</span>
+            <a href="adminLogin" class="btn-admin">Login as Admin</a>
         </div>
 
         <div class="footer-text">
-            <span>© <script>document.write(new Date().getFullYear())</script> Asset Management • Admin</span>
+            <span>© <script>document.write(new Date().getFullYear())</script> Asset Management • User</span>
         </div>
     </div>
 </body>

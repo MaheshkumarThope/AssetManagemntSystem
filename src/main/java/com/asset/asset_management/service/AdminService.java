@@ -34,6 +34,11 @@ public class AdminService {
 		return false;
 	}
 	
+	public Admin getAdmin(String email)
+	{
+		return adminRepo.findByEmail(email);
+	}
+	
 
 
 

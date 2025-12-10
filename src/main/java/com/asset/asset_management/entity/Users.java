@@ -1,19 +1,39 @@
 package com.asset.asset_management.entity;
 
-import java.time.LocalDateTime;
+import java.security.Timestamp;
+import java.time.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
 public class Users {
 	
+		@ManyToOne
+		@JoinColumn(name = "department_id") // nullable
+		private Department department;
+		
+		@OneToOne(mappedBy = "user")
+		private Allocation allocations;
+	
+		@OneToMany(mappedBy = "user")
+		private List<Request> requests = new ArrayList<>();
+		
 	 	@Id
-	    @GeneratedValue
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "user_id")
 	    private Integer userId;
 
@@ -29,15 +49,16 @@ public class Users {
 	    @Column(name = "phone")
 	    private String phone;
 
-	    @Column(name = "department_id")
-	    private Integer departmentId;
+	    @Column(name = "department_id", insertable = false, updatable = false)
+	    private Long departmentId;
 
 	    @Column(name = "status_a")
 	    private String statusA;   
 	    
 
-		@Column(name = "created_at")
-	    private LocalDateTime createdAt;
+	    @CreationTimestamp
+	    @Column(name = "created_at", updatable = false)
+	    private LocalDate createdAt;
 
 	    public Integer getUserId() {
 			return userId;
@@ -79,11 +100,11 @@ public class Users {
 			this.phone = phone;
 		}
 
-		public Integer getDepartmentId() {
+		public Long getDepartmentId() {
 			return departmentId;
 		}
 
-		public void setDepartmentId(Integer departmentId) {
+		public void setDepartmentId(Long departmentId) {
 			this.departmentId = departmentId;
 		}
 
@@ -95,14 +116,21 @@ public class Users {
 			this.statusA = statusA;
 		}
 
-		public LocalDateTime getCreatedAt() {
+		public LocalDate getCreatedAt() {
 			return createdAt;
 		}
 
-		public void setCreatedAt(LocalDateTime createdAt) {
+		public void setCreatedAt(LocalDate createdAt) {
 			this.createdAt = createdAt;
 		}
 
+		public Department getDepartment() {
+		    return department;
+		}
+
+		public void setDepartment(Department department) {
+		    this.department = department;
+		}
 		@Override
 		public String toString() {
 			return "Users [userId=" + userId + ", fullName=" + fullName + ", email=" + email + ", passwordH="

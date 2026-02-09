@@ -112,13 +112,13 @@ public class LoginController {
 
 	    List<Users> users;
         if (departmentId != null) {
-            // filter by department
+            // filter by Dept
             users = userService.findByDepartment_DepartmentId(departmentId);
         } else if (q != null && !q.trim().isEmpty()) {
             // simple search by name or email (add this repo method if not present)
             users = userService.search(q);
         } else {
-            // default: show all users
+            // default: showing all users
             users = userService.findAll();
         }
 

@@ -10,6 +10,7 @@ public class Allocation {
 	@OneToOne(optional = false)
 	@JoinColumn(name = "user_id")
 	private Users user;
+    // Bi-directional relationship to Asset is defined in Asset class with mappedBy="allocation"
 	
 	public Users getUser() {
 		return user;

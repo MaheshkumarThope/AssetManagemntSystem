@@ -22,7 +22,7 @@ public class Admin {
 	@Id
 	@GeneratedValue
 	private int admin_id;
-
+	//Getters and Setters
 	@Override
 	public String toString() {
 		return "Admin [admin_id=" + admin_id + ", full_name=" + full_name + ", email=" + email + ", password_hash="
